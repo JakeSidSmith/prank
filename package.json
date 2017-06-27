@@ -1,0 +1,43 @@
+{
+  "name": "prank",
+  "version": "0.0.0",
+  "description": "Spectacular Javascript Testing",
+  "main": "src/lib/index.js",
+  "bin": {
+    "prank": "src/cli/index.js"
+  },
+  "scripts": {
+    "test": "eslint src/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jakesidsmith/prank.git"
+  },
+  "keywords": [
+    "test",
+    "testing",
+    "runner",
+    "unit",
+    "awesome",
+    "best",
+    "fast",
+    "fastest",
+    "speed",
+    "omg",
+    "wow",
+    "amazing",
+    "spectacular",
+    "sexy"
+  ],
+  "author": "Jake 'Sid' Smith",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/jakesidsmith/prank/issues"
+  },
+  "homepage": "https://github.com/jakesidsmith/prank#readme",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "eslint-config-jakesidsmith": "github:jakesidsmith/eslint-config-jakesidsmith#v2.2.0"
+  }
+}
