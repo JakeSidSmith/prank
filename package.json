@@ -36,8 +36,19 @@
   },
   "homepage": "https://github.com/jakesidsmith/prank#readme",
   "dependencies": {
+    "chai": ">= 4 < 5",
+    "jsdom": ">= 11 < 12",
+    "sinon": ">= 2 < 3",
+    "sinon-chai": ">= 2 < 3"
   },
   "devDependencies": {
-    "eslint-config-jakesidsmith": "github:jakesidsmith/eslint-config-jakesidsmith#v2.2.0"
+    "chai": "4.0.2",
+    "eslint-config-jakesidsmith": "github:jakesidsmith/eslint-config-jakesidsmith#v2.2.0",
+    "jsdom": "11.0.0",
+    "sinon": "2.3.5",
+    "sinon-chai": "2.11.0"
+  },
+  "engines":{
+    "node": ">= 5"
   }
 }
