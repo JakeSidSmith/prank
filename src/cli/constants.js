@@ -4,7 +4,9 @@
 
   module.exports = {
     CWD: process.cwd(),
-    DEFAULT_PATTERN: '!(node_modules)**{@(tests|spec)/**/,@(test|spec)}*.@(js|ts)?(x)'
+    DEFAULT_PATTERN: '!(node_modules)**{@(tests|spec)/**/,@(test|spec)}*.@(js|ts)?(x)',
+    TICK_CHAR: '✔',
+    CROSS_CHAR: '✕'
   };
 
 })();

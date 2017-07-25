@@ -20,22 +20,39 @@
   var currentSuite = '';
   var currentTest = '';
 
-  function fail (message, error) {
-    console.error(chalk.red(message + ' Failed!'));
-    console.error(chalk.red(error.message));
+  function fail (message, error, prefix, suffix) {
+    prefix = utils.getDefault(prefix, '');
+    suffix = utils.getDefault(suffix, '');
+
+    console.error(
+      prefix +
+      CONSTANTS.CROSS_CHAR + ' ' + chalk.red(message + ' Failed!') +
+      '\n\n' +
+      chalk.red(error.message) +
+      suffix
+    );
   }
 
-  function pass (message) {
-    console.error(chalk.green(message + ' Passed!'));
+  function pass (message, prefix, suffix) {
+    prefix = utils.getDefault(prefix, '');
+    suffix = utils.getDefault(suffix, '');
+
+    console.log(
+      prefix +
+      CONSTANTS.TICK_CHAR + ' ' + chalk.green(message + ' Passed!') +
+      suffix
+    );
   }
 
   function describe (name, fn) {
     currentSuite = name;
 
+    console.log('  ' + name);
+
     try {
       fn();
     } catch (error) {
-      fail(currentSuite, error);
+      fail(currentSuite, error, '\n  ', '\n');
       return;
     }
   }
@@ -46,11 +63,11 @@
     try {
       fn();
     } catch (error) {
-      fail(currentSuite + ' ' + currentTest, error);
+      fail(currentSuite + ' ' + currentTest, error, '    ');
       return;
     }
 
-    pass(currentSuite + ' ' + currentTest);
+    pass(currentSuite + ' ' + currentTest, '    ');
   }
 
   var SANDBOX = {
