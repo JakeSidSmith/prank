@@ -5,6 +5,7 @@
   var fs = require('fs');
   var vm = require('vm');
   var glob = require('glob');
+  var chalk = require('chalk');
 
   var utils = require('./utils');
   var CONSTANTS = require('./constants');
@@ -19,14 +20,22 @@
   var currentSuite = '';
   var currentTest = '';
 
+  function fail (message, error) {
+    console.error(chalk.red(message + ' Failed!'));
+    console.error(chalk.red(error.message));
+  }
+
+  function pass (message) {
+    console.error(chalk.green(message + ' Passed!'));
+  }
+
   function describe (name, fn) {
     currentSuite = name;
 
     try {
       fn();
     } catch (error) {
-      console.error(currentSuite + ' Failed!');
-      console.error(error.message);
+      fail(currentSuite, error);
       return;
     }
   }
@@ -37,12 +46,11 @@
     try {
       fn();
     } catch (error) {
-      console.error(currentSuite + ' ' + currentTest + ' Failed!');
-      console.error(error.message);
+      fail(currentSuite + ' ' + currentTest, error);
       return;
     }
 
-    console.log(currentSuite + ' ' + currentTest + ' Passed!');
+    pass(currentSuite + ' ' + currentTest);
   }
 
   var SANDBOX = {
@@ -77,7 +85,7 @@
       try {
         script.runInNewContext(SANDBOX, options);
       } catch (error) {
-        console.error(error.message);
+        console.error(chalk.red(error.message));
       }
     });
 
