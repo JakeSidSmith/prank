@@ -5,10 +5,8 @@
 (function () {
 
   var jargs = require('jargs');
-  // var glob = require('glob');
 
   var program = require('./program');
-  // var CONSTANTS = require('./constants');
 
   var Program = jargs.Program;
   var Help = jargs.Help;
