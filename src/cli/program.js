@@ -30,8 +30,14 @@
       var options = {filename: filepath};
       var script = new vm.Script(content, options);
 
-      script.runInNewContext(context, options);
+      try {
+        script.runInNewContext(context, options);
+      } catch (error) {
+        console.error(error.message);
+      }
     });
+
+    console.log('Complete');
   }
 
   module.exports = program;
