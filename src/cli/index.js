@@ -26,6 +26,7 @@
           description: 'Run javascript tests',
           usage: 'prank [glob]',
           examples: [
+            'prank "!(node_modules)**/@(@(tests|spec)/**/*|**/*.@(test|spec)).js"',
             'prank "tests/**/*.js"'
           ],
           callback: program
