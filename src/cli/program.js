@@ -16,6 +16,35 @@
     };
   }
 
+  var currentSuite = '';
+  var currentTest = '';
+
+  function describe (name, fn) {
+    currentSuite = name;
+
+    try {
+      fn();
+    } catch (error) {
+      console.error(currentSuite + ' Failed!');
+      console.error(error.message);
+      return;
+    }
+  }
+
+  function it (name, fn) {
+    currentTest = name;
+
+    try {
+      fn();
+    } catch (error) {
+      console.error(currentSuite + ' ' + currentTest + ' Failed!');
+      console.error(error.message);
+      return;
+    }
+
+    console.log(currentSuite + ' ' + currentTest + ' Passed!');
+  }
+
   var SANDBOX = {
     console: {
       log: fakeConsole('log'),
@@ -23,7 +52,13 @@
       info: fakeConsole('info'),
       error: fakeConsole('error')
     },
-    setTimeout: setTimeout // TOTO: Fake timeouts
+    setTimeout: setTimeout, // TOTO: Fake timeouts
+    prank: {
+      describe: describe,
+      it: it,
+      xdescribe: utils.noop,
+      xit: utils.noop
+    }
   };
 
   function program (tree) {

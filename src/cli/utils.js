@@ -20,9 +20,12 @@
     }
   }
 
+  function noop () {}
+
   module.exports = {
     getDefault: getDefault,
-    forEach: forEach
+    forEach: forEach,
+    noop: noop
   };
 
 })();
