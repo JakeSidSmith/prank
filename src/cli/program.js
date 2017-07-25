@@ -28,7 +28,7 @@
       prefix +
       CONSTANTS.CROSS_CHAR + ' ' + chalk.red(message + ' Failed!') +
       '\n\n' +
-      chalk.red(error.message) +
+      chalk.red(error.message) + // TODO: Stack trace
       suffix
     );
   }
