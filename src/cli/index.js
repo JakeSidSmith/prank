@@ -13,7 +13,7 @@
   var Program = jargs.Program;
   var Help = jargs.Help;
   var Arg = jargs.Arg;
-  var KWArg = jargs.KWArg;
+  // var KWArg = jargs.KWArg;
 
   jargs.collect(
     Help(
@@ -37,15 +37,15 @@
           {
             type: 'glob'
           }
-        ),
-        KWArg(
-          'coverage',
-          {
-            alias: 'c',
-            description: 'Pattern to collect coverage from',
-            type: 'glob'
-          }
-        )
+        )// ,
+        // KWArg(
+        //   'coverage',
+        //   {
+        //     alias: 'c',
+        //     description: 'Pattern to collect coverage from',
+        //     type: 'glob'
+        //   }
+        // )
       )
     )
   );
