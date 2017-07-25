@@ -16,6 +16,16 @@
     };
   }
 
+  var SANDBOX = {
+    console: {
+      log: fakeConsole('log'),
+      warn: fakeConsole('warn'),
+      info: fakeConsole('info'),
+      error: fakeConsole('error')
+    },
+    setTimeout: setTimeout // TOTO: Fake timeouts
+  };
+
   function program (tree) {
     console.log(tree);
 
@@ -26,19 +36,11 @@
 
     utils.forEach(files, function (filepath) {
       var content = '(function(){' + fs.readFileSync(filepath, 'utf8') + '})()';
-      var context = {
-        console: {
-          log: fakeConsole('log'),
-          warn: fakeConsole('warn'),
-          info: fakeConsole('info'),
-          error: fakeConsole('error')
-        }
-      };
-      var options = {filename: filepath};
+      var options = {filename: filepath, timeout: 5000};
       var script = new vm.Script(content, options);
 
       try {
-        script.runInNewContext(context, options);
+        script.runInNewContext(SANDBOX, options);
       } catch (error) {
         console.error(error.message);
       }
