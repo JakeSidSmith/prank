@@ -37,6 +37,7 @@
   "homepage": "https://github.com/jakesidsmith/prank#readme",
   "dependencies": {
     "chai": ">= 4 < 5",
+    "chalk": ">= 2 < 3",
     "glob": ">= 7 < 8",
     "jargs": "0.3.3",
     "jsdom": ">= 11 < 12",
@@ -45,6 +46,7 @@
   },
   "devDependencies": {
     "chai": "4.0.2",
+    "chalk": "2.0.1",
     "eslint-config-jakesidsmith": "github:jakesidsmith/eslint-config-jakesidsmith#v2.2.0",
     "glob": "7.1.2",
     "jargs": "0.3.3",
