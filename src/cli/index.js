@@ -33,9 +33,10 @@
           callback: program
         },
         Arg(
-          'match',
+          'pattern',
           {
-            type: 'glob'
+            type: 'glob',
+            description: 'Pattern to match tests'
           }
         )// ,
         // KWArg(
