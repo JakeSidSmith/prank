@@ -81,8 +81,8 @@
     prank: {
       describe: describe,
       it: it,
-      xdescribe: utils.noop,
-      xit: utils.noop
+      xdescribe: utils.noop, // TODO: Run tests but do not fail?
+      xit: utils.noop // TODO: Log skipped tests
     }
   };
 
