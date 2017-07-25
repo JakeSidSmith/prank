@@ -11,7 +11,7 @@
     console.log(tree);
 
     var pattern = utils.getDefault(tree.args.pattern, CONSTANTS.DEFAULT_PATTERN);
-    var files = glob(pattern);
+    var files = glob.sync(pattern);
 
     console.log(files);
   }
