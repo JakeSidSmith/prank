@@ -4,30 +4,50 @@
 
 (function () {
 
-  var fs = require('fs');
+  var jargs = require('jargs');
+  // var glob = require('glob');
 
-  var CONSTANTS = require('./constants');
+  var program = require('./program');
+  // var CONSTANTS = require('./constants');
 
-  var args = [].concat(process.argv);
-  args.shift(); // Node location
-  args.shift(); // This location
+  var Program = jargs.Program;
+  var Help = jargs.Help;
+  var Arg = jargs.Arg;
+  var KWArg = jargs.KWArg;
 
-  console.log(args);
-
-  if (!args.length) {
-    console.error('No test path / regex specified');
-    process.exit(1);
-  }
-
-  if (args.length > 1) {
-    var argString = args.map().join(' ');
-    var hasCoverageArg = CONSTANTS.MATCHES_COVERAGE.exec(argString);
-    var hasCoveragePath = CONSTANTS.MATCHES_COVERAGE_PATH.exec(argString);
-
-    if (hasCoverageArg && !hasCoveragePath) {
-      console.error('No coverage path / regex specified');
-      process.exit(1);
-    }
-  }
+  jargs.collect(
+    Help(
+      'help',
+      {
+        alias: 'h',
+        description: 'Display help & usage'
+      },
+      Program(
+        'prank',
+        {
+          description: 'Run javascript tests',
+          usage: 'prank [glob]',
+          examples: [
+            'prank "tests/**/*.js"'
+          ],
+          callback: program
+        },
+        Arg(
+          'match',
+          {
+            type: 'glob'
+          }
+        ),
+        KWArg(
+          'coverage',
+          {
+            alias: 'c',
+            description: 'Pattern to collect coverage from',
+            type: 'glob'
+          }
+        )
+      )
+    )
+  );
 
 })();
