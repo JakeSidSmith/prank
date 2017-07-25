@@ -9,6 +9,13 @@
   var utils = require('./utils');
   var CONSTANTS = require('./constants');
 
+  function fakeConsole (key) {
+    return function () {
+      var args = Array.prototype.slice.call(arguments);
+      console[key].apply(console, ['Hello!'].concat(args));
+    };
+  }
+
   function program (tree) {
     console.log(tree);
 
@@ -21,10 +28,10 @@
       var content = '(function(){' + fs.readFileSync(filepath, 'utf8') + '})()';
       var context = {
         console: {
-          log: function () {
-            var args = Array.prototype.slice.call(arguments);
-            console.log.apply(console, ['Hello!'].concat(args));
-          }
+          log: fakeConsole('log'),
+          warn: fakeConsole('warn'),
+          info: fakeConsole('info'),
+          error: fakeConsole('error')
         }
       };
       var options = {filename: filepath};
