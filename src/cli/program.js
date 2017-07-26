@@ -17,7 +17,7 @@
     };
   }
 
-  var currentSuite = '';
+  var currentSuite = ''; // TODO: Nested describes
   var currentTest = '';
 
   function fail (message, error, prefix, suffix) {
